@@ -1,5 +1,5 @@
 from typing import Any, List
-
+from utlis.utils import parse_value
 
 class ExcelSheet:
     """
@@ -29,7 +29,7 @@ class ExcelSheet:
         if not (0 <= row < self.rows and 0 <= col < self.cols):
             raise IndexError("Cell position out of range")
 
-    def insert(self, row: int, col: int, value: float) -> None:
+    def insert(self, row: int, col: int, value: Any) -> None:
         """
         Insert information into a cell.
 
@@ -43,9 +43,9 @@ class ExcelSheet:
         if self.sheet[row][col] is not None:
             raise ValueError("Cell already contains data. Use update instead.")
 
-        self.sheet[row][col] = value
+        self.sheet[row][col] = parse_value(value)
 
-    def update(self, row: int, col: int, value: float) -> None:
+    def update(self, row: int, col: int, value: Any) -> None:
         """
         Update information in a cell.
 
@@ -55,7 +55,7 @@ class ExcelSheet:
             value: New value.
         """
         self._validate_position(row, col)
-        self.sheet[row][col] = value
+        self.sheet[row][col] = parse_value(value)
 
     def has_value(self, row: int, col: int) -> bool:
         """
@@ -103,7 +103,7 @@ class ExcelSheet:
         if not(0 <= row < self.rows):
             raise IndexError("Row index out of range")
 
-        total = sum(value for value in self.sheet[row] if isinstance(value, float))
+        total = sum(value for value in self.sheet[row] if isinstance(value, (float, int)))
         return total
 
 
@@ -121,7 +121,7 @@ class ExcelSheet:
             raise IndexError("Column out of range")
 
         total = sum(
-            row[col] for row in self.sheet if isinstance(row[col], float)
+            row[col] for row in self.sheet if isinstance(row[col], (float, int))
         )
 
         return total
