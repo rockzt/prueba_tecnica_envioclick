@@ -9,10 +9,10 @@ def display_menu():
     print("="*20)
     print("MENU Excel")
     print("="*20)
-    print("1. Insertar Informacion Celda")
-    print("2. Actualizar Informacion Celda")
+    print("1. Insertar Informacion en Celda")
+    print("2. Actualizar Informacion en Celda")
     print("3. Validar Informacion en Celda")
-    print("4. Preview Celda")
+    print("4. Preview Celdas")
     print("5. Sumar Valores en Fila")
     print("6. Sumar Valores en Columna")
     print("7. Exit")
@@ -52,15 +52,15 @@ def handle_choice(choice, sheet):
         choice = input("Elige la columna: ").strip()
         print(sheet.sum_column(int(choice)))
     elif choice == '7':
-        print("Goodbye!")
+        print("Cerrando programa....")
         sys.exit()
     else:
-        print("Invalid choice. Please try again.")
+        print("Opcion invalida. Prueba de nuevo.")
 
-    input("\nPress Enter to continue...") # Pauses the script
+    input("\nPresiona Enter para continuar...")
 
 def main():
-    print("Establece el tamano de la hoja excel")
+    print("Establece el tamano de la hoja de excel")
     rows = input("Filas: ").strip()
     columns = input("Columnas: ").strip()
     sheet = ExcelSheet(rows=int(rows), cols=int(columns))
