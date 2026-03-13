@@ -29,7 +29,7 @@ class ExcelSheet:
         if not (0 <= row < self.rows and 0 <= col < self.cols):
             raise IndexError("Cell position out of range")
 
-    def insert(self, row: int, col: int, value: Any) -> None:
+    def insert(self, row: int, col: int, value: float) -> None:
         """
         Insert information into a cell.
 
@@ -45,7 +45,7 @@ class ExcelSheet:
 
         self.sheet[row][col] = value
 
-    def update(self, row: int, col: int, value: Any) -> None:
+    def update(self, row: int, col: int, value: float) -> None:
         """
         Update information in a cell.
 
@@ -61,6 +61,10 @@ class ExcelSheet:
         """
         Validate if a cell contains information.
 
+        Args:
+            row: Row index.
+            col: Column index.
+
         Returns:
             True if the cell has data, otherwise False.
         """
@@ -71,9 +75,20 @@ class ExcelSheet:
         """
         Print a preview of the sheet.
         """
-        print("     ", "    ".join([str(i) for i in range(self.rows)]))
-        for i, row in enumerate(self.sheet):
-            print(f"{i} {row}")
+
+        header = "    "
+        for col in range(self.cols):
+            header += f"{col}     "
+        print(header)
+
+        for row_index, row in enumerate(self.sheet):
+            line = f"{row_index} | "
+
+            for value in row:
+                cell = "" if value is None else value
+                line += f"{cell}    "
+
+            print(line)
 
     def sum_row(self, row: int) -> None:
         """
@@ -88,7 +103,7 @@ class ExcelSheet:
         if not(0 <= row < self.rows):
             raise IndexError("Row index out of range")
 
-        total = sum(value for value in self.sheet[row] if isinstance(value, (int, float)))
+        total = sum(value for value in self.sheet[row] if isinstance(value, float))
         return total
 
 
@@ -106,7 +121,7 @@ class ExcelSheet:
             raise IndexError("Column out of range")
 
         total = sum(
-            row[col] for row in self.sheet if isinstance(row[col], (int, float))
+            row[col] for row in self.sheet if isinstance(row[col], float)
         )
 
         return total
