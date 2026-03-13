@@ -37,7 +37,7 @@ def handle_choice(choice, sheet):
         print("Validar informacin en celda.")
         row = input("Elige la fila: ").strip()
         column = input("Elige la columna: ").strip()
-        print(f"Celda ({row},{column}) has value: {"contiene informacion" if sheet.has_value(int(row), int(column)) else "no contiene informacion"}")
+        print(f"Celda ({row},{column}): {"contiene informacion" if sheet.has_value(int(row), int(column)) else "no contiene informacion"}")
     elif choice == '4':
         print("Preview.")
         sheet.preview()
@@ -60,7 +60,10 @@ def handle_choice(choice, sheet):
     input("\nPress Enter to continue...") # Pauses the script
 
 def main():
-    sheet = ExcelSheet(rows=5, cols=5)
+    print("Establece el tamano de la hoja excel")
+    rows = input("Filas: ").strip()
+    columns = input("Columnas: ").strip()
+    sheet = ExcelSheet(rows=int(rows), cols=int(columns))
     while True:
         display_menu()
         choice = input("Elige una opcion (1-7): ").strip()
