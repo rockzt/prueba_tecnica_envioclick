@@ -6,15 +6,27 @@ class Finder:
     """
 
     def __init__(self, text : str):
+        """
+       Initialize the Finder with the input text and create a Cleaner instance to process it.
+
+       Args:
+              text: The input text to be cleaned and searched.
+       """
         self.data = Cleaner(text)
 
     def find(self, target: str) -> str:
+        """
+        Find the number of occurrences of the target word in the cleaned data.
+        Args:
+            target: The word to search for.
+        Returns:
+            A string indicating the number of occurrences found.
+        """
 
         cleaned_data = self.data.clean()
         count = 0
 
         for item in cleaned_data:
-
             if item == target:
                 count = count + 1
 
