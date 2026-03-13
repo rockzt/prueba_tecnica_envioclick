@@ -23,7 +23,7 @@ class PrioritySorter:
             True if the elements should be swapped, False otherwise.
         """
 
-        if self.order == 'ASC':
+        if self.order == 'DESC':
             return a['priority'] < b['priority']
         else:
             return a['priority'] > b['priority']
