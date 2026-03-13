@@ -22,7 +22,7 @@ class Finder:
         Returns:
             A string indicating the number of occurrences found.
         """
-
+        target = target.lower()
         cleaned_data = self.data.clean()
         count = 0
 
