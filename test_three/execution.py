@@ -25,14 +25,14 @@ def handle_choice(choice, sheet):
         row = input("Elige la fila: ").strip()
         column = input("Elige la columna: ").strip()
         value = input("Escribe el valor a insertar: ").strip()
-        sheet.insert(int(row), int(column), int(value))
+        sheet.insert(int(row), int(column), float(value))
     elif choice == '2':
         print("Actualizar Informacion en celda.")
         sheet.preview()
         row = input("Elige la fila: ").strip()
         column = input("Elige la columna: ").strip()
         value = input("Escribe el valor a insertar: ").strip()
-        sheet.update(int(row), int(column), int(value))
+        sheet.update(int(row), int(column), float(value))
     elif choice == '3':
         print("Validar informacin en celda.")
         row = input("Elige la fila: ").strip()
