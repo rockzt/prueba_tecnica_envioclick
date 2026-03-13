@@ -71,8 +71,13 @@ class ExcelSheet:
         """
         Print a preview of the sheet.
         """
+        print("     ", "    ".join([str(i) for i in range(self.rows)]))
+        for i, row in enumerate(self.sheet):
+            print(f"{i} {row}")
+        """
         for row in self.sheet:
-            print(row)
+            print(f"{row}")
+        """
 
     def sum_row(self, row: int) -> None:
         """
