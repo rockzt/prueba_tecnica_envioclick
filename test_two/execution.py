@@ -1,5 +1,4 @@
-from FilteringEngine import FilterEngine
-from PrioritySorter import PrioritySorter
+from DataProcessor import DataProcessor
 from data.input import data
 filters = [
     ('weight', '=', 3),
@@ -8,8 +7,8 @@ filters = [
 
 order = 'DESC'
 
-filter_engine = FilterEngine(filters)
-sorter = PrioritySorter(order)
-result = sorter.sort(data, filter_engine)
+
+processor = DataProcessor(filters, order)
+result = processor.process(data)
 
 print(result)
